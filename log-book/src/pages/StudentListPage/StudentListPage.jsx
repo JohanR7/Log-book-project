@@ -1,0 +1,167 @@
+import logo from "../../logo.png";
+import { useNavigate } from "react-router-dom";
+
+const students = [
+  { roll: "AM.SC.U5CSE24654", name: "John Doe" },
+  { roll: "AM.SC.U5CSE24655", name: "Jane Smith" },
+  { roll: "AM.SC.U5CSE24656", name: "Alex Brown" },
+];
+
+const StudentListPage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="App">
+      {/* HEADER */}
+      <header
+        style={{
+          backgroundColor: "#AD3A3C",
+          color: "white",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: "30px",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ height: "50px", marginRight: "10px", padding: "20px" }}
+          />
+        </div>
+
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2vw",
+            paddingRight: "20px",
+          }}
+        >
+          <button style={navBtnStyle}>Dashboard</button>
+          <button style={navBtnStyle}>Attendance List</button>
+        </nav>
+      </header>
+
+      {/* MAIN */}
+      <main>
+        {/* TOP CONTROLS */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            backgroundColor: "#f0f0f0",
+            margin: "30px 20px",
+            padding: "40px 20px",
+            borderRadius: "8px",
+          }}
+        >
+          <div>
+            <label style={{ fontSize: "2vh" }}>Select Class: </label>
+            <select
+              style={{
+                fontSize: "1.5vh",
+                padding: "5px 5vw",
+                marginLeft: "10px",
+              }}
+            >
+              <option>Select</option>
+              <option>CSE A</option>
+              <option>CSE B</option>
+            </select>
+          </div>
+
+          <div style={{ display: "flex", gap: "1vh" }}>
+            <button style={actionBtnStyle}>Student Report</button>
+            <button style={actionBtnStyle}>Class Report</button>
+          </div>
+        </div>
+
+        {/* STUDENT LIST */}
+        <div
+          style={{
+            backgroundColor: "#f0f0f0",
+            margin: "30px 20px",
+            padding: "30px",
+            borderRadius: "8px",
+          }}
+        >
+          {/* HEADER ROW */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr 3fr 1fr",
+              fontSize: "2vh",
+              fontWeight: "bold",
+              marginBottom: "20px",
+              paddingLeft: "20px",
+            }}
+          >
+            <span>Roll No</span>
+            <span>Student Name</span>
+            <span></span>
+          </div>
+
+          {/* DATA ROWS */}
+          {students.map((s, i) => (
+            <div
+              key={i}
+              style={{
+                backgroundColor: "white",
+                borderRadius: "30px",
+                padding: "15px 25px",
+                marginBottom: "15px",
+                display: "grid",
+                gridTemplateColumns: "2fr 3fr 1fr",
+                alignItems: "center",
+                fontSize: "2vh",
+              }}
+            >
+              <span>{s.roll}</span>
+              <span>{s.name}</span>
+              <button
+                style={viewBtnStyle}
+                onClick={() => navigate("/student-report")}
+              >
+                View report
+              </button>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+/* ===== COMMON INLINE STYLES ===== */
+
+const navBtnStyle = {
+  background: "none",
+  border: "none",
+  color: "white",
+  fontSize: "2vh",
+  cursor: "pointer",
+};
+
+const actionBtnStyle = {
+  fontSize: "1.5vh",
+  fontWeight: "bold",
+  padding: "1vh 2vh",
+};
+
+const viewBtnStyle = {
+  padding: "6px 18px",
+  borderRadius: "20px",
+  border: "none",
+  backgroundColor: "#e0e0e0",
+  cursor: "pointer",
+};
+
+export default StudentListPage;
