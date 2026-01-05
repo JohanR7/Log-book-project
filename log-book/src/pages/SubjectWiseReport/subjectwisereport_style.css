@@ -1,0 +1,88 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden; 
+}
+.container {
+    width: 100vw; 
+    margin: 0;
+    padding: 0;
+
+}
+
+.title-card {
+    display: flex;
+    align-items: center; 
+    background-color: #AD3A3C;
+    height: 13vh;
+    width: 100%;        
+    margin: 0;
+}
+
+.icon {
+    padding-left: 20px; 
+    height: 80%;       
+    width: auto;
+}
+.operator{
+    display: flex;
+    background-color: #D9D9D9;
+    width: 70vw;
+    border: 2px solid black;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.student-btn{
+    margin-left: 180px;
+    width: 150px;
+    height: 50px;
+}
+.class-btn{
+    margin-left: 80px;
+    width: 150px;
+    height: 50px;
+}
+.subject{
+    margin-left: 15vw;
+    margin-top: 20px;
+
+}
+.subject select{
+        width: 150px;
+    height: 50px;
+        background-color: #D9D9D9;
+}
+.main{
+    display: flex;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+.report{
+    width: 50vw;
+    height: 50vh;
+    background-color: #D9D9D9;
+}
+.report th,td{
+    padding:40px;
+    font-size: 30px;
+}
+.report p{
+       padding-left:80px;
+       font-size: 25px;
+}
+.details{
+    width: 18vw;
+    height: 50vh;
+    background-color: #D9D9D9;
+    margin-left: 6vw;
+}

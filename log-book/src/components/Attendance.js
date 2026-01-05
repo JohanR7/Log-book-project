@@ -5,8 +5,8 @@ export default function Attendance() {
   const [klass, setKlass] = useState('Class 1');
   const [students, setStudents] = useState([
     { id: 1, roll: '01', name: 'Student name', present: true },
-    { id: 2, roll: '02', name: 'Student Name', present: false },
-    { id: 3, roll: '03', name: 'Student name', present: true },
+    { id: 1, roll: '01', name: 'Student Name', present: false },
+    
   ]);
   const [newName, setNewName] = useState('');
 
@@ -90,3 +90,4 @@ export default function Attendance() {
     </div>
   );
 }
+
