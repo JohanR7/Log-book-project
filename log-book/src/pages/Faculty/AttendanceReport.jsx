@@ -1,8 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Search, Filter } from 'lucide-react'
-import Logo from '../assets/logo.png'
 import './AttendanceReport.css'
-import { Link } from "react-router-dom"
 import FacultyCalendar from './../../components/FacultyCalendar.jsx'
 
 function AttendanceReport() {
