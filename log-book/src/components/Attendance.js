@@ -2,35 +2,45 @@ import React, { useState } from 'react';
 import './Attendance.css';
 
 export default function Attendance() {
-  const [klass, setKlass] = useState('Class 1');
+  const [klass, setKlass] = useState('CSE-A');
+  const [facultyCode, setFacultyCode] = useState('');
+
+  
   const [students, setStudents] = useState([
-    { id: 1, roll: '01', name: 'Student name', present: true },
-    { id: 1, roll: '01', name: 'Student Name', present: false },
-    
+    { id: 1, roll: '01', name: 'AM.SC.U4CSE24208', present: true },
+    { id: 2, roll: '02', name: 'AM.SC.U4CSE24209', present: true },
+    { id: 3, roll: '03', name: 'AM.SC.U4CSE24210', present: true },
+    { id: 4, roll: '04', name: 'AM.SC.U4CSE24211', present: true },
+    { id: 5, roll: '05', name: 'AM.SC.U4CSE24212', present: true },
   ]);
-  const [newName, setNewName] = useState('');
+
 
   function toggleAttendance(id) {
-    setStudents((s) => s.map((st) => (st.id === id ? { ...st, present: !st.present } : st)));
+    setStudents((prev) =>
+      prev.map((st) =>
+        st.id === id ? { ...st, present: !st.present } : st
+      )
+    );
   }
 
-  function addStudent(e) {
-    e.preventDefault();
-    if (!newName.trim()) return;
-    setStudents((s) => [
-      ...s,
-      { id: Date.now(), roll: String(s.length + 1).padStart(2, '0'), name: newName.trim(), present: false },
-    ]);
-    setNewName('');
-  }
 
   const absentees = students.filter((s) => !s.present);
 
+  function handleSubmit() {
+    console.log('Faculty Code:', facultyCode);
+    console.log('Class:', klass);
+    console.log('Absentees:', absentees);
+    alert('Attendance Submitted!');
+  }
+
   return (
     <div className="attendance-page">
+      <div className="topbar">Logbook</div>
+
       <div className="attendance-wrapper">
+        
         <div className="left-panel">
-          <div className="title">Time Table</div>
+          <div className="title">TIMETABLE</div>
 
           <div className="table-wrapper">
             <table className="stu-table">
@@ -38,7 +48,7 @@ export default function Attendance() {
                 <tr>
                   <th>Roll</th>
                   <th>Student Name</th>
-                  <th>Attendance</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,45 +57,70 @@ export default function Attendance() {
                     key={st.id}
                     className={st.present ? 'row present' : 'row absent'}
                     onClick={() => toggleAttendance(st.id)}
-                    title="Click to toggle"
+                    title="Click to mark absent/present"
                   >
                     <td>{st.roll}</td>
                     <td>{st.name}</td>
-                    <td>{st.present ? 'Present' : 'Absent'}</td>
+                    <td>{st.present ? '✔ Present' : '✖ Absent'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-
-            
           </div>
         </div>
 
-        <div className="right-panel">
-          <label>
         
+        <div className="right-panel">
+          
+          <label className="label">
+            Faculty Code
+            <input
+              type="text"
+              placeholder="Enter faculty code"
+              value={facultyCode}
+              onChange={(e) => setFacultyCode(e.target.value)}
+              className="input"
+            />
+          </label>
+
+          
+          <label className="label">
+            Select Class
             <select value={klass} onChange={(e) => setKlass(e.target.value)}>
-              <option>Select Class</option>
-             
+              <option>CSE-A</option>
+              <option>CSE-B</option>
+              <option>ECE-A</option>
             </select>
           </label>
-           <label>
-        
+          <label className="label">
+            Class Status
             <select value={klass} onChange={(e) => setKlass(e.target.value)}>
-              <option>Class Status</option>
-            
+              <option>taken</option>
+              <option>no class</option>
+              <option>substitute</option>
             </select>
           </label>
 
+
+          
           <div className="absentees">
             <h4>Absentees</h4>
-           
+            {absentees.length === 0 ? (
+              <p className="none">No absentees 🎉</p>
+            ) : (
+              absentees.map((s) => (
+                <div key={s.id} className="absent-name">
+                  {s.name.slice(-3)}
+                </div>
+              ))
+            )}
           </div>
 
-          <button className="submit-btn">Submit</button>
+          <button className="submit-btn" onClick={handleSubmit}>
+            Submit Attendance
+          </button>
         </div>
       </div>
     </div>
   );
 }
-
