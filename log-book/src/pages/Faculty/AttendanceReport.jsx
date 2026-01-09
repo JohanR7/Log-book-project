@@ -3,7 +3,7 @@ import { Search, Filter } from 'lucide-react'
 import Logo from '../assets/logo.png'
 import './AttendanceReport.css'
 import { Link } from "react-router-dom"
-import FacultyCalendar from './FacultyCalendar'
+import FacultyCalendar from './../../components/FacultyCalendar.jsx'
 
 function AttendanceReport() {
   const [selectedClass, setSelectedClass] = useState('')
@@ -188,3 +188,4 @@ function AttendanceReport() {
 }
 
 export default AttendanceReport
+
